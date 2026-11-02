@@ -26,17 +26,24 @@ interface Props {
 
 export function RecipeIndex(p: Props) {
   return (
-    <div className="paper animate-page relative mx-auto max-w-5xl rounded-lg px-5 py-8 md:px-12 md:py-12">
+    <div className="linen animate-page corner-stitch relative mx-auto max-w-5xl rounded-lg px-5 py-8 md:px-12 md:py-12">
+      {/* Conejo de felpa sentado en la esquina de la servilleta bordada */}
+      <img src={bunnyFelpa} alt="" width={816} height={816} loading="lazy" className="pointer-events-none absolute -bottom-4 left-2 z-10 h-24 w-24 object-contain drop-shadow-lg" />
       <button onClick={p.onClose} className="absolute right-4 top-4 flex items-center gap-1 text-sm italic text-muted-foreground hover:text-primary">
         <BookMarked className="h-4 w-4" /> Cerrar libro
       </button>
       <header className="flex flex-col items-center gap-2 text-center md:flex-row md:text-left">
         <img src={bunny} alt="" width={816} height={816} className="h-24 w-24 object-contain" />
         <div>
-          <p className="font-script text-primary">Índice de</p>
-          <h2 className="font-serif text-4xl font-bold text-ink">Recetas Queridas</h2>
+          <p className="font-script text-primary">Recetas de la casa de mamá Gris</p>
+          <h2 className="font-serif text-4xl font-bold text-ink">Índice del Recetario</h2>
         </div>
       </header>
+
+      {/* Botones de costura: cambian el listón de acento */}
+      <div className="mt-6 flex justify-center md:justify-start">
+        <SewingButtons accent={p.accent} onPick={p.setAccent} />
+      </div>
 
       {/* Ribbon tabs */}
       <nav className="mt-8 flex flex-wrap gap-2">
