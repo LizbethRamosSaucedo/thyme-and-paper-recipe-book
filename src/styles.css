@@ -40,6 +40,7 @@
   --color-ribbon-butter: var(--ribbon-butter);
   --color-ribbon-sky: var(--ribbon-sky);
   --color-ribbon-lilac: var(--ribbon-lilac);
+  --color-ribbon-peach: var(--ribbon-peach);
 }
 
 :root {
@@ -72,6 +73,7 @@
   --ribbon-butter: oklch(0.88 0.09 95);
   --ribbon-sky: oklch(0.8 0.05 230);
   --ribbon-lilac: oklch(0.78 0.06 310);
+  --ribbon-peach: oklch(0.85 0.07 45);
   --shadow-paper: 0 1px 2px oklch(0.3 0.05 50 / 0.2), 0 8px 24px -8px oklch(0.25 0.05 50 / 0.45);
   --shadow-book: 0 30px 60px -20px oklch(0.1 0.03 40 / 0.7), 0 10px 20px oklch(0.1 0.03 40 / 0.4);
 }
@@ -111,6 +113,36 @@
   background: oklch(0.92 0.04 90 / 0.7);
   box-shadow: 0 1px 2px oklch(0.3 0.05 50 / 0.2);
 }
+
+/* Servilleta bordada: trama de hilo tejido sobre tela clara */
+@utility linen {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 15%, oklch(0.97 0.02 90 / 0.7), transparent 45%),
+    repeating-linear-gradient(0deg, oklch(0.86 0.03 85 / 0.55) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(90deg, oklch(0.86 0.03 85 / 0.55) 0 1px, transparent 1px 7px);
+  box-shadow: var(--shadow-paper);
+}
+
+/* Orilla bordada tipo pespunte, para esquinas artesanales */
+@utility corner-stitch {
+  outline: 2px dashed oklch(0.62 0.08 20 / 0.5);
+  outline-offset: -8px;
+}
+
+/* Botón de costura de dos agujeros, hecho a mano */
+@utility sew-button {
+  background: radial-gradient(circle at 35% 30%, oklch(0.95 0.03 85), oklch(0.82 0.06 70));
+  box-shadow: inset 0 0 0 3px oklch(0.72 0.07 62 / 0.55), 0 2px 4px oklch(0.3 0.05 50 / 0.35);
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  30% { transform: rotate(-10deg) scale(1.15); }
+  70% { transform: rotate(10deg) scale(1.15); }
+}
+@utility animate-wiggle { animation: wiggle 0.45s ease; }
+
 
 @utility stitch {
   outline: 2px dashed oklch(0.75 0.08 70 / 0.6);
