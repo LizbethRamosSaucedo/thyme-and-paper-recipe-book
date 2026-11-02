@@ -22,7 +22,7 @@ export function RecipeDetail({ recipe, fav, toggleFav, onBack, onPrev, onNext, a
   return (
     <article key={recipe.id} className="paper animate-page relative mx-auto max-w-5xl rounded-lg px-5 py-8 md:px-12 md:py-12">
       {/* Listón de tela de la página, del color elegido en los botones de costura */}
-      <div className={`absolute -top-2 right-12 h-24 w-5 shadow-md [clip-path:polygon(0_0,100%_0,100%_100%,50%_85%,0_100%)] ${RIBBON_BG[accent]}`} />
+      <div className={`pointer-events-none absolute -top-2 right-12 h-24 w-5 shadow-md [clip-path:polygon(0_0,100%_0,100%_100%,50%_85%,0_100%)] ${RIBBON_BG[accent]}`} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <button type="button" onClick={onBack} className="flex items-center gap-1 font-serif italic text-muted-foreground hover:text-primary">
           <ArrowLeft className="h-4 w-4" /> Volver al índice
