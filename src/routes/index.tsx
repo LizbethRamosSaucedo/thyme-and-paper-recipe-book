@@ -3,15 +3,15 @@ import { useEffect, useMemo, useState } from "react";
 import { Cover } from "@/components/recipe/Cover";
 import { RecipeIndex } from "@/components/recipe/RecipeIndex";
 import { RecipeDetail } from "@/components/recipe/RecipeDetail";
-import { RECIPES, type Category } from "@/lib/recipes";
+import { RECIPES, type Accent, type Category } from "@/lib/recipes";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "El Recetario Vintage — Recetas caseras de antaño" },
-      { name: "description", content: "Un libro de recetas vintage interactivo con repostería y cocina casera, paso a paso." },
-      { property: "og:title", content: "El Recetario Vintage" },
-      { property: "og:description", content: "Abre el libro y descubre recetas caseras con encanto de antaño." },
+      { title: "Recetario — Recetas de la casa de mamá Gris" },
+      { name: "description", content: "El recetario de la casa de mamá Gris: recetas caseras paso a paso, con búsqueda, filtros y favoritas." },
+      { property: "og:title", content: "Recetario — Recetas de la casa de mamá Gris" },
+      { property: "og:description", content: "Abre el recetario y descubre las recetas de la casa de mamá Gris." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -28,6 +28,7 @@ function Index() {
   const [query, setQuery] = useState("");
   const [onlyFav, setOnlyFav] = useState(false);
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [accent, setAccent] = useState<Accent>("ribbon-rose");
 
   useEffect(() => {
     try { setFavorites(new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]"))); } catch {}
@@ -65,11 +66,11 @@ function Index() {
     <main className="min-h-screen px-3 py-8 md:px-8 md:py-14">
       {recipe ? (
         <RecipeDetail key={recipe.id} recipe={recipe} fav={favorites.has(recipe.id)} toggleFav={() => toggleFav(recipe.id)}
-          onBack={() => setSelected(null)} onPrev={() => move(-1)} onNext={() => move(1)} />
+          onBack={() => setSelected(null)} onPrev={() => move(-1)} onNext={() => move(1)} accent={accent} />
       ) : (
         <RecipeIndex recipes={filtered} category={category} setCategory={setCategory} query={query} setQuery={setQuery}
           onlyFav={onlyFav} setOnlyFav={setOnlyFav} favorites={favorites} toggleFav={toggleFav}
-          onSelect={setSelected} onClose={() => setOpen(false)} />
+          onSelect={setSelected} onClose={() => setOpen(false)} accent={accent} setAccent={setAccent} />
       )}
     </main>
   );

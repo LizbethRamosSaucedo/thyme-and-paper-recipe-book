@@ -1,4 +1,4 @@
-export type Category = "Panes" | "Pasteles" | "Galletas" | "Sopas" | "Conservas";
+export type Category = "Desayunos" | "Panes" | "Pasteles" | "Galletas" | "Sopas" | "Conservas";
 
 export interface Recipe {
   id: string;
@@ -12,12 +12,27 @@ export interface Recipe {
 }
 
 export const CATEGORIES: { name: Category; color: string }[] = [
+  { name: "Desayunos", color: "ribbon-peach" },
   { name: "Panes", color: "ribbon-rose" },
   { name: "Pasteles", color: "ribbon-sage" },
   { name: "Galletas", color: "ribbon-butter" },
   { name: "Sopas", color: "ribbon-sky" },
   { name: "Conservas", color: "ribbon-lilac" },
 ];
+
+/** Clases Tailwind por listón (necesarias estáticas para que Tailwind las genere). */
+export const RIBBON_BG: Record<string, string> = {
+  "ribbon-rose": "bg-ribbon-rose",
+  "ribbon-sage": "bg-ribbon-sage",
+  "ribbon-butter": "bg-ribbon-butter",
+  "ribbon-sky": "bg-ribbon-sky",
+  "ribbon-lilac": "bg-ribbon-lilac",
+  "ribbon-peach": "bg-ribbon-peach",
+};
+
+/** Botones de costura interactivos: cambian el listón de acento de la página. */
+export const ACCENTS = ["ribbon-rose", "ribbon-sage", "ribbon-butter", "ribbon-peach"] as const;
+export type Accent = (typeof ACCENTS)[number];
 
 export const RECIPES: Recipe[] = [
   { id: "pan-canela", title: "Rollos de Canela de la Abuela", category: "Panes", time: "2 h 30 min", serves: 12, note: "Mejor recién salidos del horno, con café.",
@@ -47,6 +62,9 @@ export const RECIPES: Recipe[] = [
   { id: "mermelada-fresa", title: "Mermelada de Fresa", category: "Conservas", time: "1 h", serves: 4, note: "Cubre la tapa con tela de cuadritos.",
     ingredients: ["1 kg de fresas", "600 g de azúcar", "Jugo de 1 limón"],
     steps: ["Macera las fresas con el azúcar 1 hora.", "Cuece a fuego medio removiendo 35 minutos.", "Añade el limón y prueba el punto en un plato frío.", "Envasa en frascos esterilizados."] },
+  { id: "crepas-avena", title: "Crepas de Avena de mamá Gris", category: "Desayunos", time: "15 min", serves: 4, note: "Receta de la casa de mamá Gris; también riquísimas como postre.",
+    ingredients: ["1 taza de avena", "1 huevo", "Esencia de vainilla", "3/4 taza de leche", "Canela al gusto", "Mantequilla", "Fresas y miel para decorar (o al gusto)"],
+    steps: ["Vierte todos los ingredientes en la licuadora hasta que se haga una mezcla homogénea.", "Pon en el sartén una capa fina, previamente engrasada con mantequilla.", "Cocina hasta dorar ligeramente y decora con fresas y miel al gusto."] },
   { id: "durazno-almibar", title: "Duraznos en Almíbar", category: "Conservas", time: "50 min", serves: 6, note: "Perfectos para el invierno.",
     ingredients: ["1 kg de duraznos", "500 g de azúcar", "500 ml de agua", "1 raja de canela"],
     steps: ["Pela y parte los duraznos.", "Prepara almíbar con agua, azúcar y canela.", "Cuece los duraznos 15 minutos.", "Envasa calientes y sella."] },
