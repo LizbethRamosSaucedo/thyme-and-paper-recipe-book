@@ -90,7 +90,7 @@ export function RecipeIndex(p: Props) {
             const fav = p.favorites.has(r.id);
             return (
               <li key={r.id} className={`group relative ${i % 2 ? "rotate-1" : "-rotate-1"} transition-transform hover:rotate-0 hover:scale-[1.03]`}>
-                <span className="tape absolute -top-3 left-1/2 z-10 h-6 w-20 -translate-x-1/2 rotate-[-4deg]" />
+                <span className="tape pointer-events-none absolute -top-3 left-1/2 z-10 h-6 w-20 -translate-x-1/2 rotate-[-4deg]" />
                 <div className="paper clipping flex h-full flex-col p-5 pt-7">
                   <span className={`self-start rounded-sm px-2 py-0.5 text-xs uppercase tracking-widest text-ink ${RIBBON_BG[color]}`}>{r.category}</span>
                   <button type="button" onClick={() => p.onSelect(r.id)} className="mt-3 text-left font-serif text-xl font-bold text-ink hover:text-primary hover:underline">
