@@ -1,7 +1,6 @@
 import { Heart, Search, BookMarked } from "lucide-react";
 import bunny from "@/assets/bunny.png";
 import { CATEGORIES, RIBBON_BG, type Category, type Accent, type Recipe } from "@/lib/recipes";
-import { SewingButtons } from "@/components/recipe/SewingButtons";
 
 interface Props {
   recipes: Recipe[];
@@ -32,11 +31,6 @@ export function RecipeIndex(p: Props) {
           <h2 className="font-serif text-4xl font-bold text-ink">Índice del Recetario</h2>
         </div>
       </header>
-
-      {/* Botones de costura interactivos: cambian el listón de acento del recetario */}
-      <div className="mt-6 flex justify-center md:justify-start">
-        <SewingButtons accent={p.accent} onPick={p.setAccent} />
-      </div>
 
       {/* Ribbon tabs */}
       <nav className="mt-8 flex flex-wrap gap-2">
