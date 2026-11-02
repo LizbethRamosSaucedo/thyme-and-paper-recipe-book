@@ -57,7 +57,8 @@ function Index() {
   const list = filtered.length ? filtered : RECIPES;
   const move = (d: number) => {
     const idx = list.findIndex((r) => r.id === selected);
-    setSelected(list[(idx + d + list.length) % list.length].id);
+    const next = list[(idx + d + list.length) % list.length];
+    if (next) setSelected(next.id);
   };
 
   return (
