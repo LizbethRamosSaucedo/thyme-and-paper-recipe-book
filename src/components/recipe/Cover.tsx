@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import leather from "@/assets/leather.jpg";
 import bunny from "@/assets/bunny.png";
-import bunnyFelpa from "@/assets/bunny-felpa.png";
 
 export function Cover({ onOpen }: { onOpen: () => void }) {
   const [opening, setOpening] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
   const open = () => {
+    if (opening) return;
     setOpening(true);
-    setTimeout(onOpen, 900);
+    timer.current = setTimeout(onOpen, 900);
   };
   return (
     <div className="flex min-h-screen items-center justify-center p-6">
       <button
+        type="button"
         onClick={open}
         aria-label="Abrir el recetario"
         className={`group relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-r-2xl rounded-l-md shadow-book transition-transform duration-500 hover:-rotate-1 hover:scale-[1.02] ${opening ? "animate-cover-open" : ""}`}
@@ -29,14 +32,6 @@ export function Cover({ onOpen }: { onOpen: () => void }) {
             Toca para abrir ✦
           </span>
         </div>
-        {/* Conejo de felpa asomado en la esquina de la portada */}
-        <img
-          src={bunnyFelpa}
-          alt="Conejo de felpa en la esquina"
-          width={816}
-          height={816}
-          className="absolute -bottom-3 -left-2 h-24 w-24 rotate-6 object-contain drop-shadow-lg transition-transform group-hover:-rotate-3 group-hover:scale-110"
-        />
       </button>
     </div>
   );
